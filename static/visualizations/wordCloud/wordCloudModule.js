@@ -18,7 +18,7 @@ angular
                         success: function(data) {
                             frequency_list = data;
 
-                            var width = 700;
+                            var width = 620;
                             var height = 400;
                             var min = 100;
                             var max = 0;
