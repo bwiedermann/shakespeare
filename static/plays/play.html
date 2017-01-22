@@ -1,36 +1,39 @@
 <div layout="column" ng-cloak>
-  <md-content>
-    <div layout="row" style="margin:8px;padding-bottom:8px">
-      <h1 style="margin-top:8px"> {{playName}} </h1>
-      <md-tabs class="feature-tabs" md-autoselect md-no-pagination="true" md-align-tabs="right">
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Summary')">Summary</md-tab>
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Themes')">Themes</md-tab>
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Visualizations')">Character Relationships</md-tab>
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Characters')">Characters</md-tab>
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Sides')">Sides</md-tab>
-        <md-tab style="width:100px" ng-click="ctrl.showFeature('Reader')">Reader</md-tab>
-      </md-tabs>
-    </div>
-    <h4 ng-show="ctrl.selected == 'Themes'"> This tab gives visualizations about themes. The word cloud below shows the 50 most frequent words in the play, sized relative to frequency. Hover over a word to see how often it appears. Click on a word to see its corresponding donut graph. Each donut graph shows a breakdown of which characters speak a given word. Hover over a character in the donut graph to see which lines that character speaks in the theme distribution graph at the bottom. The theme distribution graph shows where a given word (theme) appears in the play.</h4>
-    <h4 ng-show="ctrl.selected == 'Visualizations'"> This tab gives visualizations about relationships between characters. The theme graph below shows how many lines each character shares with the other characters in the play. To see a specific character's relationships, hover over the character's name. The thickness of each arc represents the number of lines shared. </h4>
-    <h4 ng-show="ctrl.selected == 'Characters'"> This tab gives visualizations about the characters. The heat map below shows the number of scenes shared by two characters in the play. To see the number of lines a character speaks for each scene in this play, feel free to click on a character, and scrolling down will display the visualization. Note that to deselect the bar graph for a character, simply click on the character's name again. </h4>
-    <h4 class="sides-description" ng-show="ctrl.selected == 'Sides'"> This tab is the sides feature. “Side” is theatre jargon for a small piece of a script. In Shakespeare’s time, the actors sometimes got only their lines, not the whole play. To generate sides for a given character, act, and scene, select the appropriate items in the dropdowns and click "Generate sides." Check the "Show previous characters" checkbox to enable/disable displaying the previous character's names.  </h4>
-    <md-card ng-show="ctrl.selected == 'Summary'" style="padding:16px; max-width:1200px; margin-left: auto; margin-right:auto;" md-theme="default" md-theme-watch>
-      <h2 class="md-headline">Summary</h2>
-      <p>{{playSummary}}</p>  
-    </md-card>
+    <md-content>
+        <div layout="row" style="margin:8px;padding-bottom:8px">
+            <h1 style="margin-top:8px"> {{playName}} </h1>
+            <md-tabs class="feature-tabs" md-autoselect md-no-pagination="true" md-align-tabs="right">
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('Summary')">Summary</md-tab>
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('Themes')">Themes</md-tab>
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('Visualizations')">Character Relationships</md-tab>
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('Characters')">Characters</md-tab>
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('Sides')">Sides</md-tab>
+                <md-tab style="width:100px" ng-click="ctrl.showFeature('About')">About</md-tab>
+            </md-tabs>
+        </div>
+        <h4 ng-show="ctrl.selected == 'Themes'"> This tab gives visualizations about themes. The word cloud below shows the 50 most frequent words in the play, sized relative to frequency. Hover over a word to see how often it appears. Click on a word to see its corresponding donut graph. Each donut graph shows a breakdown of which characters speak a given word. Hover over a character in the donut graph to see which lines that character speaks in the theme distribution graph at the bottom. The theme distribution graph shows where a given word (theme) appears in the play.</h4>
+        <h4 ng-show="ctrl.selected == 'Visualizations'"> This tab gives visualizations about relationships between characters. The theme graph below shows how many lines each character shares with the other characters in the play. To see a specific character's relationships, hover over the character's name. The thickness of each arc represents the number of lines shared. </h4>
+        <h4 ng-show="ctrl.selected == 'Characters'"> This tab gives visualizations about the characters. The heat map below shows the number of scenes shared by two characters in the play. To see the number of lines a character speaks for each scene in this play, feel free to click on a character, and scrolling down will display the visualization. Note that to deselect the bar graph for a character, simply click on the character's name again. </h4>
+        <h4 class="sides-description" ng-show="ctrl.selected == 'Sides'"> This tab is the sides feature. “Side” is theatre jargon for a small piece of a script. In Shakespeare’s time, the actors sometimes got only their lines, not the whole play. To generate sides for a given character, act, and scene, select the appropriate items in the dropdowns and click "Generate sides." Check the "Show previous characters" checkbox to enable/disable displaying the previous character's names.  </h4>
+        <md-card ng-show="ctrl.selected == 'Summary'" style="padding:16px; max-width:1200px; margin-left: auto; margin-right:auto;" md-theme="default" md-theme-watch>
+            <h2 class="md-headline">Summary</h2>
+            <p>{{playSummary}}</p>
+        </md-card>
 
-    <md-card class="printable" ng-show="ctrl.selected == 'Sides'" style="padding:16px" md-theme="default" md-theme-watch>
-      <sides file="file" characters="playChars" scenes="playScenes"></sides>
-    </md-card>
-    <div style="text-align: center" ng-show="ctrl.selected == 'Visualizations'" class="Visualizations"></div>
-    <div style="text-align: center" ng-show="ctrl.selected == 'Characters'" id="chart"></div>
-    <div style="text-align: center" ng-show="ctrl.selected == 'Characters'" class="barChart"></div>
-    <div style="text-align: center;" ng-show="ctrl.selected == 'Themes'" class="Themes" ng-controller="PlayController"></div>
-	  <div style="text-align: center;" ng-show="ctrl.selected == 'Themes'" class="pieChart" ng-controller="PlayController"></div>
-  	<div style="text-align: center" ng-show="ctrl.selected == 'Themes'" class="themeGraph" ng-controller="PlayController"></div>
+        <md-card class="printable" ng-show="ctrl.selected == 'Sides'" style="padding:16px" md-theme="default" md-theme-watch>
+            <sides file="file" characters="playChars" scenes="playScenes"></sides>
+        </md-card>
+        <div style="text-align: center" ng-show="ctrl.selected == 'Visualizations'" class="Visualizations"></div>
+        <div style="text-align: center" ng-show="ctrl.selected == 'Characters'" id="chart"></div>
+        <div style="text-align: center" ng-show="ctrl.selected == 'Characters'" class="barChart"></div>
+        <div style="text-align: center;" ng-show="ctrl.selected == 'Themes'" class="Themes" ng-controller="PlayController"></div>
+        <div style="text-align: center;" ng-show="ctrl.selected == 'Themes'" class="pieChart" ng-controller="PlayController"></div>
+        <div style="text-align: center" ng-show="ctrl.selected == 'Themes'" class="themeGraph" ng-controller="PlayController"></div>
 
-    <pre ng-show="ctrl.selected == 'Reader'">
+        <p ng-show="ctrl.selected == 'About'">
+            This project was <a href="https://github.com/janehwu/shakespeare">originally created</a> by Anthony Romm, Srinidhi Srinivasan, Alex Trudeau, Jane Wu.
+        </p>
+        <pre ng-show="ctrl.selected == 'About'">
     Our Shakespearian Sonnet:
     	   Shakespeare is hard to visualize, so
 	   We are making it easier to read
@@ -51,16 +54,16 @@
 	   Come check out our web app, Prof. Ben said woo
 	</pre>
 
-	
-	  <img src="./static/jane shakespeare.JPG" ng-show="ctrl.selected == 'Reader'">
-	  
 
-    <bar-chart ng-show="ctrl.selected == 'Characters'"></bar-chart>
-    <speak-chord ng-show="ctrl.selected == 'Visualizations'"play="file"></speak-chord>
-    <heat-map ng-show="ctrl.selected == 'Characters'"play="file"></heat-map>
-    <word-cloud ng-show="ctrl.selected == 'Themes'" play="file"></word-cloud>
-	  <theme-graph ng-show="ctrl.selected == 'Themes'" play="file"></theme-graph>
-    <pie-chart ng-show="ctrl.selected == 'Themes'" play="file"></pie-chart>
+        <img src="./static/jane shakespeare.JPG" ng-show="ctrl.selected == 'About'">
 
-  </md-content>
+
+        <bar-chart ng-show="ctrl.selected == 'Characters'"></bar-chart>
+        <speak-chord ng-show="ctrl.selected == 'Visualizations'" play="file"></speak-chord>
+        <heat-map ng-show="ctrl.selected == 'Characters'" play="file"></heat-map>
+        <word-cloud ng-show="ctrl.selected == 'Themes'" play="file"></word-cloud>
+        <theme-graph ng-show="ctrl.selected == 'Themes'" play="file"></theme-graph>
+        <pie-chart ng-show="ctrl.selected == 'Themes'" play="file"></pie-chart>
+
+    </md-content>
 </div>
